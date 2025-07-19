@@ -1,10 +1,18 @@
 package com.adp.interfaces.panels;
 
+import com.adp.constant.Colors;
 import com.adp.interfaces.panels.subpanels.OptionPanel;
 import com.adp.interfaces.panels.subpanels.StaffCrewPanel;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
@@ -17,7 +25,47 @@ public class DashboardPanel extends javax.swing.JPanel {
     public DashboardPanel() {
         initComponents();
         loadPanels();
+        initButtons();
         init();
+    }
+
+    private void initButtons() {
+        Color defaultColor = Colors.BUTTON_WHITE_BACKGROUND;
+        Color clickedColor = Colors.BUTTON_DARK_BACKGROUND;
+
+        ArrayList<JButton> btnList = new ArrayList();
+        btnList.add(operationBtn);
+        btnList.add(stafCrewBtn);
+
+        for (JButton btn : btnList) {
+            btn.setBackground(defaultColor);
+            btn.setForeground(Color.BLACK);
+            btn.setBorder(null);
+            btn.setFocusPainted(false);
+            btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+//            btn.putClientProperty(FlatClientProperties.STYLE,
+//                    "arc:10; borderColor:#171717; borderWidth:0");
+        }
+
+        operationBtn.setBackground(clickedColor);
+        operationBtn.setForeground(Color.WHITE);
+
+        for (JButton btn : btnList) {
+            btn.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    for (JButton b : btnList) {
+                        b.setBackground(defaultColor);
+                        b.setForeground(Color.BLACK);
+
+                    }
+
+                    btn.setBackground(clickedColor);
+                    btn.setForeground(Color.WHITE);
+                }
+            });
+        }
+
     }
 
     private void loadPanels() {
@@ -143,11 +191,11 @@ public class DashboardPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void operationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_operationBtnActionPerformed
-        cardLayout.show(optionPanel, "optionPanel");
+        cardLayout.show(secondCardPanel, "optionPanel");
     }//GEN-LAST:event_operationBtnActionPerformed
 
     private void stafCrewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stafCrewBtnActionPerformed
-        cardLayout.show(staffCrewPanel, "staffCrewPanel");
+        cardLayout.show(secondCardPanel, "staffCrewPanel");
     }//GEN-LAST:event_stafCrewBtnActionPerformed
 
 
