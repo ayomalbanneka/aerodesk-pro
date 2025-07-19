@@ -1,5 +1,6 @@
 package com.adp.interfaces;
 
+import com.adp.AuthenticateScreen;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.Image;
@@ -9,6 +10,8 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 public class SplashScreen extends javax.swing.JFrame {
+    
+    private static SplashScreen SplashScreen;
 
     public SplashScreen() {
         initComponents();
@@ -67,6 +70,8 @@ public class SplashScreen extends javax.swing.JFrame {
                 
                 //Login Screen
                 
+                new AuthenticateScreen().setVisible(true);
+                SplashScreen.dispose();
             }
         });
         
@@ -207,7 +212,10 @@ public class SplashScreen extends javax.swing.JFrame {
 
     public static void main(String args[]) {
         FlatMacLightLaf.setup();
-        java.awt.EventQueue.invokeLater(() -> new SplashScreen().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> {
+        SplashScreen.SplashScreen = new SplashScreen(); // <-- FIX
+        SplashScreen.SplashScreen.setVisible(true);
+    });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
