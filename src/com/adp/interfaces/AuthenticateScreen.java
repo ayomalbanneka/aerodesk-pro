@@ -2,6 +2,7 @@ package com.adp.interfaces;
 
 import com.adp.connection.RDSConnection;
 import com.adp.loggers.CustomLoggers;
+import com.adp.util.AppIcon;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Image;
@@ -20,6 +21,7 @@ public class AuthenticateScreen extends javax.swing.JFrame {
     }
 
     private void init() {
+        AppIcon.applyIcon(this);
         // Logo load
         ImageIcon logoIcon = new ImageIcon(getClass().getClassLoader().getResource("com/adp/recources/images/Main-Logo.png"));
         Image image1 = logoIcon.getImage().getScaledInstance(LogoLabel.getWidth(), LogoLabel.getHeight(), Image.SCALE_SMOOTH);
