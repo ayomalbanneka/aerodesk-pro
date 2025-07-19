@@ -1,4 +1,4 @@
-package com.adp;
+package com.adp.interfaces;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
@@ -36,7 +36,7 @@ public class AuthenticateScreen extends javax.swing.JFrame {
         emailField = new javax.swing.JTextField();
         authBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        passwordField = new javax.swing.JPasswordField();
+        passwordField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Authenticate");
@@ -55,7 +55,6 @@ public class AuthenticateScreen extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(120, 119, 119));
         jLabel12.setText("<html> Welcome, Administrator! Please log in with your credentials to access the AeroDesk Pro management dashboard.  Here, you can monitor flight schedules, manage terminal operations, oversee ground services, and handle user access with ease.</html>");
 
-        emailField.setBackground(new java.awt.Color(234, 234, 234));
         emailField.setFont(new java.awt.Font("Inter 18pt Medium", 0, 14)); // NOI18N
         emailField.setForeground(new java.awt.Color(83, 83, 83));
         emailField.setText("Email Address");
@@ -70,9 +69,9 @@ public class AuthenticateScreen extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(124, 124, 124));
         jLabel3.setText("© 2025 AeroDesk. All rights reserved. ");
 
-        passwordField.setBackground(new java.awt.Color(234, 234, 234));
         passwordField.setFont(new java.awt.Font("Inter 18pt Medium", 0, 14)); // NOI18N
-        passwordField.setText("jPasswordField1");
+        passwordField.setForeground(new java.awt.Color(83, 83, 83));
+        passwordField.setText("Password");
         passwordField.setMargin(new java.awt.Insets(2, 20, 2, 6));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -82,6 +81,9 @@ public class AuthenticateScreen extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(LogoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -89,10 +91,7 @@ public class AuthenticateScreen extends javax.swing.JFrame {
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(emailField, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
                             .addComponent(authBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordField)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(jLabel3)))
+                            .addComponent(passwordField))))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -106,9 +105,9 @@ public class AuthenticateScreen extends javax.swing.JFrame {
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(34, 34, 34)
                 .addComponent(authBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(jLabel3)
@@ -143,6 +142,6 @@ public class AuthenticateScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JTextField passwordField;
     // End of variables declaration//GEN-END:variables
 }
