@@ -14,7 +14,7 @@ public class SplashScreen extends javax.swing.JFrame {
     }
 
     private void init() {
-
+        
         setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 40, 40));
 
         ImageIcon icon1 = new ImageIcon(getClass().getClassLoader().getResource("com/adp/recources/images/Main-Logo.png"));
