@@ -10,7 +10,7 @@ import javax.swing.UIManager;
 import java.sql.ResultSet;
 
 public class OTPVerificationScreen extends javax.swing.JFrame {
-    
+
     private String generatedOtp;
 
     public OTPVerificationScreen(String email) {
@@ -18,16 +18,31 @@ public class OTPVerificationScreen extends javax.swing.JFrame {
         init();
         UIManager.put("Component.arc", 10);
         UIManager.put("ComboBox.padding", new Insets(5, 10, 5, 10));
-        dynamicDataLoading(email);  
-        
-         // Call the OtpSending utility
+        dynamicDataLoading(email);
+
+        // Call the OtpSending utility
         generatedOtp = OtpSending.sendOtp(email);
-        
+
+    }
+
+    public static String maskEmail(String email) {
+        int atIndex = email.indexOf("@");
+        if (atIndex <= 1) {
+            return email;
+        }
+        String namePart = email.substring(0, atIndex);
+        String domainPart = email.substring(atIndex);
+
+        int visibleChars = 3;
+        int maskLength = namePart.length() - visibleChars;
+        String masked = "*".repeat(maskLength) + namePart.substring(maskLength);
+
+        return masked + domainPart;
     }
 
     private void dynamicDataLoading(String email) {
-            String e = "Email send to : " + email;
-            jLabel10.setText(e);
+        String e = "Email send to : " + maskEmail(email);
+        jLabel10.setText(e);
     }
 
     private void init() {
@@ -39,9 +54,7 @@ public class OTPVerificationScreen extends javax.swing.JFrame {
 
         // Rounded corners config
         verifyBtn.putClientProperty(FlatClientProperties.STYLE, "arc:10");
-        
-        
-        
+
     }
 
     @SuppressWarnings("unchecked")

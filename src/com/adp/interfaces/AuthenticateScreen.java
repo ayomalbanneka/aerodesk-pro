@@ -8,8 +8,6 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import raven.toast.Notifications;
 
 public class AuthenticateScreen extends javax.swing.JFrame {
@@ -158,8 +156,6 @@ public class AuthenticateScreen extends javax.swing.JFrame {
 //                            Notifications.Location.TOP_CENTER,
 //                            3000,
 //                            "Login Success");
-
-                   
 
                     new OTPVerificationScreen(rs.getString("email")).setVisible(true);
                     AuthenticateScreen.this.dispose();
