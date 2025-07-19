@@ -3,10 +3,8 @@ package com.adp.interfaces;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.ImageIcon;
-import javax.swing.Timer;
 
 public class SplashScreen extends javax.swing.JFrame {
 
@@ -27,10 +25,6 @@ public class SplashScreen extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("com/adp/recources/images/Flight-Image.png"));
         Image image = icon.getImage().getScaledInstance(ImageLabel.getWidth(), ImageLabel.getHeight(), Image.SCALE_SMOOTH);
         ImageLabel.setIcon(new ImageIcon(image));
-
-        new Timer(2000, (ActionEvent e) -> {
-            SplashScreen.this.dispose();
-        });
 
     }
 
