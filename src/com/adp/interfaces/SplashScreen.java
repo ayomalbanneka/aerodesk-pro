@@ -132,7 +132,7 @@ public class SplashScreen extends javax.swing.JFrame {
         loadCountShowLabel.setText("0%");
 
         jLabel1.setFont(new java.awt.Font("Inter 18pt", 0, 12)); // NOI18N
-        jLabel1.setText("© 2025 RideSwift. All rights reserved. ");
+        jLabel1.setText("© 2025 AeroDesk . All rights reserved. ");
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
