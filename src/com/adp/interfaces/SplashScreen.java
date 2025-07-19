@@ -137,7 +137,7 @@ public class SplashScreen extends javax.swing.JFrame {
         loadCountShowLabel.setText("0%");
 
         jLabel1.setFont(new java.awt.Font("Inter 18pt", 0, 12)); // NOI18N
-        jLabel1.setText("© 2025 RideSwift. All rights reserved. ");
+        jLabel1.setText("© 2025 AeroDesk . All rights reserved. ");
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
@@ -155,7 +155,7 @@ public class SplashScreen extends javax.swing.JFrame {
                                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addGroup(backgroundLayout.createSequentialGroup()
-                                            .addComponent(loaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(loaderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(loadCountShowLabel))
                                         .addComponent(loader, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
