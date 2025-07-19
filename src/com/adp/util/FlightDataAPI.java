@@ -4,6 +4,7 @@
  */
 package com.adp.util;
 
+import com.adp.connection.RDSConnection;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -11,6 +12,9 @@ import java.net.URL;
 import java.util.Vector;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,6 +24,7 @@ public class FlightDataAPI {
 
     public static Vector<FlightData> flightData = new Vector();
     private final static String API_KEY = "15faba367437fa6966b48f77a060adb0";
+    private final static int CAP = 200;
 
     public static Vector<FlightData> fetchFlightData() {
         try {
@@ -40,7 +45,7 @@ public class FlightDataAPI {
             JSONObject json = new JSONObject(jsonBuilder.toString());
             JSONArray data = json.getJSONArray("data");
             for (int i = 0; i < data.length(); i++) {
-                System.out.println(i);
+//                System.out.println(i);
                 JSONObject flight = data.getJSONObject(i);
                 String departureAirport = flight.getJSONObject("departure").optString("airport", "N/A");
                 String departureTimezone = flight.getJSONObject("departure").optString("timezone", "N/A");
@@ -64,22 +69,39 @@ public class FlightDataAPI {
         return flightData;
     }
 
-//    public static void main(String[] args) {
-//        Vector<FlightData> fetchedData = fetchFlightData();
-//        for (FlightData flight : fetchedData) {
-//            String departureAirport = flight.departureAirport;
-//            String departureTimezone = flight.departureTimezone;
-//            String departureGate = flight.departureGate;
-//            String departureTermianl = flight.departureTermianl;
-//            String departureScheduled = flight.departureScheduled;
-//            String arrivalTimezone = flight.arrivalTimezone;
-//            String arrivalGate = flight.arrivalGate;
-//            String arrivalTermianl = flight.departureTermianl;
-//            String arrivalScheduled = flight.arrivalScheduled;
-//            String airLine = flight.airLine;
-//            String airReg = flight.airReg;
-//            System.out.println( departureAirport + "\n: " + departureTimezone+"\n"+departureGate+"\n"+departureTermianl+"\n"+departureScheduled+"\n"+arrivalTimezone+"\n"+arrivalGate+"\n"+
-//                    arrivalTermianl+"\n"+arrivalScheduled+"\n"+airLine+"\n"+airReg);
-//        }
-//    }
+    public static void mysqlInsert() {
+        Vector<FlightData> fetchedData = fetchFlightData();
+        for (FlightData flight : fetchedData) {
+            String departureAirport = flight.departureAirport;
+            String departureTimezone = flight.departureTimezone;
+            String departureGate = flight.departureGate;
+            String departureTermianl = flight.departureTermianl;
+            String departureScheduled = flight.departureScheduled;
+            String arrivalTimezone = flight.arrivalTimezone;
+            String arrivalTermianl = flight.departureTermianl;
+            String arrivalScheduled = flight.arrivalScheduled;
+            String airLine = flight.airLine;
+            String airReg = flight.airReg;
+            try {
+                String query = "INSERT INTO airport (`d_airport`, `d_tz`, `d_terminal`, `d_date`, `a_tz`, `a_terminal`, `a_date`, `airline`, `air_craft`) "
+                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+                RDSConnection.executeUpdate(
+                        query,
+                        departureAirport,
+                        departureTimezone,
+                        departureTermianl,
+                        departureScheduled,
+                        arrivalTimezone,
+                        arrivalTermianl,
+                        arrivalScheduled,
+                        airLine,
+                        airReg
+                );
+            } catch (SQLException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Failed to load Data", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }
 }

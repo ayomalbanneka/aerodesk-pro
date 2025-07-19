@@ -1,14 +1,23 @@
 package com.adp.interfaces.panels;
 
+import com.adp.connection.RDSConnection;
 import com.adp.constant.Colors;
+import com.adp.util.FlightData;
+import com.adp.util.FlightDataAPI;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 public class DashboardPanel extends javax.swing.JPanel {
@@ -17,6 +26,7 @@ public class DashboardPanel extends javax.swing.JPanel {
         initComponents();
         init();
         initTable();
+        FlightDataAPI.mysqlInsert();
     }
 
     private void initTable() {
@@ -32,6 +42,34 @@ public class DashboardPanel extends javax.swing.JPanel {
 
         DefaultTableCellRenderer leftRenderer = (DefaultTableCellRenderer) header.getDefaultRenderer();
         leftRenderer.setHorizontalAlignment(SwingConstants.LEFT);
+        try {
+            ResultSet rs = RDSConnection.executeQuery("SELECT * FROM airport LIMIT 10");
+            DefaultTableModel dtm = (DefaultTableModel) flightOperationOverviewTable.getModel();
+            dtm.setRowCount(0);
+
+            while (rs.next()) {
+                System.out.println(rs.getString("id"));
+                Vector<String> data = new Vector<>();
+                data.add(rs.getString("id"));
+                data.add(rs.getString("d_airport"));
+                data.add(rs.getString("d_tz"));
+                data.add(rs.getString("d_terminal"));
+                data.add(rs.getString("d_date"));
+                data.add(rs.getString("a_tz"));
+                data.add(rs.getString("a_terminal"));
+                data.add(rs.getString("a_date"));
+                data.add(rs.getString("airline"));
+                data.add(rs.getString("air_craft"));
+                   System.out.println(rs.getString("d_tz"));
+                dtm.addRow(data);
+                   System.out.println("airline");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Failed to load airport data:\n" + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 
     private void init() {
@@ -52,6 +90,7 @@ public class DashboardPanel extends javax.swing.JPanel {
         operationBtn.putClientProperty(FlatClientProperties.STYLE, "arc:15");
 
         flightAddBtn.putClientProperty(FlatClientProperties.STYLE, "arc:15; borderColor:#171717; borderWidth:0");
+//        jLabel1.setText();
 
     }
 
