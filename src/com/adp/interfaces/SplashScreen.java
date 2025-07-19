@@ -4,6 +4,8 @@ import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.Image;
 import java.awt.geom.RoundRectangle2D;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 public class SplashScreen extends javax.swing.JFrame {
@@ -11,6 +13,7 @@ public class SplashScreen extends javax.swing.JFrame {
     public SplashScreen() {
         initComponents();
         init();
+        loadingAnimation();
     }
 
     private void init() {
@@ -26,6 +29,48 @@ public class SplashScreen extends javax.swing.JFrame {
         Image image = icon.getImage().getScaledInstance(ImageLabel.getWidth(), ImageLabel.getHeight(), Image.SCALE_SMOOTH);
         ImageLabel.setIcon(new ImageIcon(image));
 
+    }
+
+    
+    private void loadingAnimation(){
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i <= 100; i++) {
+                    loader.setValue(i);
+                    
+                    if (i < 30) {
+                        loaderLabel.setText("Starting Modules");
+                        loadCountShowLabel.setText(i + "%");
+                    } else if (i > 30 && i < 35) {
+                        loaderLabel.setText("Database connection established...");
+                        loadCountShowLabel.setText(i + "%");
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(SplashScreen.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else if (i > 35) {
+                        loaderLabel.setText("Setting things up...");
+                        loadCountShowLabel.setText(i + "%");
+                    } else if (i == 100) {
+                        loaderLabel.setText("Done");
+                        loadCountShowLabel.setText("Done " + i + "%");
+                    }
+                    
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException ex) {
+                        System.out.println(ex);
+                    }
+                }
+                
+                //Login Screen
+                
+            }
+        });
+        
+        t.start();
     }
 
     @SuppressWarnings("unchecked")
@@ -81,7 +126,7 @@ public class SplashScreen extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(120, 119, 119));
         jLabel12.setText("<html> Welcome to <b>AeroDesk Pro </b>– your intelligent solution for secure and efficient airport operations.  Seamlessly manage flights, terminals, and services with real-time insights and precision.</html>");
 
-        loader.setForeground(new java.awt.Color(255, 255, 255));
+        loader.setForeground(new java.awt.Color(0, 0, 0));
 
         loadCountShowLabel.setFont(new java.awt.Font("Inter 18pt Medium", 0, 14)); // NOI18N
         loadCountShowLabel.setText("0%");
