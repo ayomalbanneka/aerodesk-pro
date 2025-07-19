@@ -1,5 +1,6 @@
 package com.adp.interfaces;
 
+import com.adp.connection.RDSConnection;
 import com.adp.mail.OtpSending;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
@@ -8,10 +9,12 @@ import java.awt.Insets;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class OTPVerificationScreen extends javax.swing.JFrame {
 
     private String generatedOtp;
+    private String email;
 
     public OTPVerificationScreen(String email) {
         initComponents();
@@ -19,7 +22,7 @@ public class OTPVerificationScreen extends javax.swing.JFrame {
         UIManager.put("Component.arc", 10);
         UIManager.put("ComboBox.padding", new Insets(5, 10, 5, 10));
         dynamicDataLoading(email);
-
+        this.email = email;
         // Call the OtpSending utility
         generatedOtp = OtpSending.sendOtp(email);
 
@@ -103,6 +106,11 @@ public class OTPVerificationScreen extends javax.swing.JFrame {
         verifyBtn.setText("Verify");
         verifyBtn.setBorderPainted(false);
         verifyBtn.setFocusPainted(false);
+        verifyBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verifyBtnActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Inter 18pt", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(124, 124, 124));
@@ -162,6 +170,27 @@ public class OTPVerificationScreen extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void verifyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verifyBtnActionPerformed
+
+        try {
+
+            System.out.println(email);
+            System.out.println(generatedOtp);
+
+            ResultSet rs = RDSConnection.executeQuery("SELECT * FROM employee\n"
+                    + "WHERE email = '" + email + "' AND v_code = '" + generatedOtp + "' ");
+
+            if (rs.next()) {
+                new MainScreen(rs).setVisible(true);
+                OTPVerificationScreen.this.dispose();
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+    }//GEN-LAST:event_verifyBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -59,9 +59,9 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="dashboardBtn1" alignment="1" min="-2" pref="242" max="-2" attributes="0"/>
-                              <Component id="dashboardBtn3" alignment="1" min="-2" pref="242" max="-2" attributes="0"/>
-                              <Component id="dashboardBtn2" alignment="1" min="-2" pref="242" max="-2" attributes="0"/>
+                              <Component id="baggageHandlingBtn" alignment="1" min="-2" pref="242" max="-2" attributes="0"/>
+                              <Component id="supportBtn" alignment="1" min="-2" pref="242" max="-2" attributes="0"/>
+                              <Component id="passangerCheckBtn" alignment="1" min="-2" pref="242" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                       </Group>
@@ -81,11 +81,11 @@
                           <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           <Component id="dashboardBtn" min="-2" pref="42" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                          <Component id="dashboardBtn2" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="passangerCheckBtn" min="-2" pref="42" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                          <Component id="dashboardBtn1" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="baggageHandlingBtn" min="-2" pref="42" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                          <Component id="dashboardBtn3" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="supportBtn" min="-2" pref="42" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -162,7 +162,7 @@
             </Container>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="dashboardBtn1">
+        <Component class="javax.swing.JButton" name="baggageHandlingBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="15" green="15" red="15" type="rgb"/>
@@ -181,10 +181,10 @@
             <Property name="horizontalTextPosition" type="int" value="2"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dashboardBtn1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="baggageHandlingBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="dashboardBtn2">
+        <Component class="javax.swing.JButton" name="passangerCheckBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="15" green="15" red="15" type="rgb"/>
@@ -203,10 +203,10 @@
             <Property name="horizontalTextPosition" type="int" value="2"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dashboardBtn2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passangerCheckBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="dashboardBtn3">
+        <Component class="javax.swing.JButton" name="supportBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="15" green="15" red="15" type="rgb"/>
@@ -225,7 +225,7 @@
             <Property name="horizontalTextPosition" type="int" value="2"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dashboardBtn3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="supportBtnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

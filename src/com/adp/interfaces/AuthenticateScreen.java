@@ -8,6 +8,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JLabel;
 import raven.toast.Notifications;
 
 public class AuthenticateScreen extends javax.swing.JFrame {
@@ -44,6 +45,7 @@ public class AuthenticateScreen extends javax.swing.JFrame {
         authBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         passwordField = new javax.swing.JTextField();
+        responseLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Authenticate");
@@ -64,7 +66,7 @@ public class AuthenticateScreen extends javax.swing.JFrame {
 
         emailField.setFont(new java.awt.Font("Inter 18pt Medium", 0, 14)); // NOI18N
         emailField.setForeground(new java.awt.Color(83, 83, 83));
-        emailField.setText("Email Address");
+        emailField.setText("chamoddilshan834@gmail.com");
         emailField.setMargin(new java.awt.Insets(2, 20, 2, 6));
 
         authBtn.setBackground(new java.awt.Color(0, 0, 0));
@@ -83,8 +85,10 @@ public class AuthenticateScreen extends javax.swing.JFrame {
 
         passwordField.setFont(new java.awt.Font("Inter 18pt Medium", 0, 14)); // NOI18N
         passwordField.setForeground(new java.awt.Color(83, 83, 83));
-        passwordField.setText("Password");
+        passwordField.setText("1234");
         passwordField.setMargin(new java.awt.Insets(2, 20, 2, 6));
+
+        responseLabel.setFont(new java.awt.Font("Inter 18pt Medium", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -97,13 +101,15 @@ public class AuthenticateScreen extends javax.swing.JFrame {
                         .addComponent(jLabel3))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(LogoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(emailField, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
-                            .addComponent(authBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordField))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(responseLabel)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(LogoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addComponent(emailField, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+                                .addComponent(authBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(passwordField)))))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -115,13 +121,15 @@ public class AuthenticateScreen extends javax.swing.JFrame {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(responseLabel)
+                .addGap(18, 18, 18)
                 .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(38, 38, 38)
                 .addComponent(authBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(17, 17, 17))
         );
@@ -145,23 +153,24 @@ public class AuthenticateScreen extends javax.swing.JFrame {
         String email = emailField.getText().trim();
         String password = String.valueOf(passwordField.getText());
 
+        System.out.println(email);
+        System.out.println(password);
+
         try {
-            String sql = "SELECT * FROM employee WHERE email = '" + email + "' AND password = '" + password + "'";
-            ResultSet rs = RDSConnection.executeQuery(sql);
+
+            ResultSet rs = RDSConnection.executeQuery("SELECT * FROM employee"
+                    + " WHERE email = '" + email + "' AND password = '" + password + "'");
 
             if (rs.next()) {
-                if (rs.getInt("employee_status_id") == 1) {
-//                    Notifications.getInstance().show(
-//                            Notifications.Type.SUCCESS,
-//                            Notifications.Location.TOP_CENTER,
-//                            3000,
-//                            "Login Success");
+
+                if (rs.getString("employee_status").equalsIgnoreCase("Active")) {
 
                     new OTPVerificationScreen(rs.getString("email")).setVisible(true);
                     AuthenticateScreen.this.dispose();
 
-//                    CustomLoggers.logger.info("Logged Successfully");
-                } else if (rs.getInt("employee_status_id") == 3) {
+                    CustomLoggers.logger.info("Logged Successfully");
+
+                } else if (rs.getString("employee_status").equals("Suspend")) {
 
                     Notifications.getInstance().show(
                             Notifications.Type.WARNING,
@@ -171,7 +180,8 @@ public class AuthenticateScreen extends javax.swing.JFrame {
 
                     CustomLoggers.logger.info("Account is suspended");
 
-                } else if (rs.getInt("employee_status_id") == 4) {
+                } else if (rs.getString("employee_status").equals("Terminate")) {
+
                     Notifications.getInstance().show(
                             Notifications.Type.ERROR,
                             Notifications.Location.TOP_CENTER,
@@ -206,5 +216,6 @@ public class AuthenticateScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField passwordField;
+    private javax.swing.JLabel responseLabel;
     // End of variables declaration//GEN-END:variables
 }

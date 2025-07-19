@@ -1,4 +1,3 @@
-
 package com.adp.connection;
 
 import java.io.IOException;
@@ -25,6 +24,8 @@ public class RDSConnection {
             password = properties.getProperty("database.password");
             driver = properties.getProperty("database.driver");
 
+            System.out.println(url);
+            
             Class.forName(driver);
 
         } catch (IOException | ClassNotFoundException e) {
@@ -36,29 +37,43 @@ public class RDSConnection {
         return DriverManager.getConnection(url, user, password);
     }
 
-    private static void setParams(PreparedStatement statement, Object... params) throws SQLException {
-        for (int i = 0; i < params.length; i++) {
-            statement.setObject(i + 1, params[i]);
-        }
-    }
+//    private static void setParams(PreparedStatement statement, Object... params) throws SQLException {
+//        for (int i = 0; i < params.length; i++) {
+//            statement.setObject(i + 1, params[i]);
+//        }
+//    }
 
     //Update Query
-    public static int executeUpdate(String query, Object... params) throws SQLException {
-        try (Connection connection = getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+//    public static int executeUpdate(String query, Object... params) throws SQLException {
+//        try (Connection connection = getConnection();
+//             PreparedStatement statement = connection.prepareStatement(query)) {
+//
+//            setParams(statement, params);
+//            return statement.executeUpdate();
+//        }
+//    }
+    public static boolean executeUpdate(String query) {
 
-            setParams(statement, params);
-            return statement.executeUpdate();
+        try {
+            getConnection().createStatement().executeUpdate(query);
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
         }
+
+        return false;
     }
 
-    //INSERT, SELECT, DELETE Query
-    public static ResultSet executeQuery(String query, Object... params) throws SQLException {
-        Connection connection = getConnection();
-        PreparedStatement statement = connection.prepareStatement(query);
-
-        setParams(statement, params);
-        return statement.executeQuery();
+    public static ResultSet executeQuery(String query) throws SQLException {
+        return getConnection().createStatement().executeQuery(query);
     }
 
+//    //INSERT, SELECT, DELETE Query
+//    public static ResultSet executeQuery(String query, Object... params) throws SQLException {
+//        Connection connection = getConnection();
+//        PreparedStatement statement = connection.prepareStatement(query);
+//
+//        setParams(statement, params);
+//        return statement.executeQuery();
+//    }
 }

@@ -1,9 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.adp.mail;
 
+import com.adp.connection.RDSConnection;
+import com.adp.interfaces.AuthenticateScreen;
+import com.adp.loggers.CustomLoggers;
+import java.sql.SQLException;
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -12,6 +12,7 @@ import java.util.Random;
 public class OtpSending {
 
     public static String sendOtp(String toEmail) {
+
         final String from = "ayomalkaushalya@gmail.com";
         final String password = "spcsdaihpssxyojz"; // App-specific password
 
@@ -31,19 +32,24 @@ public class OtpSending {
         int otp = new Random().nextInt(900_000_000) + 100_000_000;
 
         try {
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(from));
-            message.setRecipients(
-                    Message.RecipientType.TO,
-                    InternetAddress.parse(toEmail)
-            );
-            message.setSubject("Aero Desk OTP");
-            message.setText("Your login OTP is: " + otp);
+//            Message message = new MimeMessage(session);
+//            message.setFrom(new InternetAddress(from));
+//            message.setRecipients(
+//                    Message.RecipientType.TO,
+//                    InternetAddress.parse(toEmail)
+//            );
+//            message.setSubject("Aero Desk OTP");
+//            message.setText("Your login OTP is: " + otp);
+//
+//            Transport.send(message);
+            RDSConnection.executeUpdate("UPDATE employee "
+                    + "SET `v_code` = '" + otp + "' WHERE `email` = '" + toEmail + "'");
 
-            Transport.send(message);
-            System.out.println("OTP Email sent successfully to: " + toEmail);
-        } catch (MessagingException e) {
-            e.printStackTrace();
+            CustomLoggers.logger.info("OTP Email sent successfully to: " + toEmail);
+
+        } catch (Exception e) {
+            System.out.println(e);
+            CustomLoggers.logger.info("OTP Generated & Sending Faild");
         }
 
         return String.valueOf(otp);
