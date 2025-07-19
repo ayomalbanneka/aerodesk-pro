@@ -45,18 +45,18 @@ public class FlightDataAPI {
                 String departureAirport = flight.getJSONObject("departure").optString("airport", "N/A");
                 String departureTimezone = flight.getJSONObject("departure").optString("timezone", "N/A");
                 String departureGate = flight.getJSONObject("departure").optString("gate", "N/A");
-                String departureTerminal = flight.getJSONObject("departure").optString("terminal", "N/A");
+                String departureTermianl = flight.getJSONObject("departure").optString("terminal", "N/A");
                 String departureScheduled = flight.getJSONObject("departure").optString("scheduled", "N/A");
 
                 String arrivalTimezone = flight.getJSONObject("arrival").optString("timezone", "N/A");
                 String arrivalGate = flight.getJSONObject("arrival").optString("gate", "N/A");
-                String arrivalTerminal = flight.getJSONObject("arrival").optString("terminal", "N/A");
+                String arrivalTermianl = flight.getJSONObject("arrival").optString("terminal", "N/A");
                 String arrivalScheduled = flight.getJSONObject("arrival").optString("scheduled", "N/A");
 
                 String airLine = flight.getJSONObject("airline").optString("name", "N/A");
 
                 String airReg = flight.getJSONObject("flight").optString("number", "N/A");
-                flightData.add(new FlightData(departureAirport, departureTimezone, departureGate, departureTerminal, departureScheduled, arrivalTimezone, arrivalGate, arrivalTerminal, arrivalScheduled, airLine, airReg));
+                flightData.add(new FlightData(departureAirport, departureTimezone, departureGate, departureTermianl, departureScheduled, arrivalTimezone, arrivalGate, arrivalTermianl, arrivalScheduled, airLine, airReg));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,16 +70,16 @@ public class FlightDataAPI {
 //            String departureAirport = flight.departureAirport;
 //            String departureTimezone = flight.departureTimezone;
 //            String departureGate = flight.departureGate;
-//            String departureTerminal = flight.departureTerminal;
+//            String departureTermianl = flight.departureTermianl;
 //            String departureScheduled = flight.departureScheduled;
 //            String arrivalTimezone = flight.arrivalTimezone;
 //            String arrivalGate = flight.arrivalGate;
-//            String arrivalTerminal = flight.arrivalTerminal;
+//            String arrivalTermianl = flight.departureTermianl;
 //            String arrivalScheduled = flight.arrivalScheduled;
 //            String airLine = flight.airLine;
 //            String airReg = flight.airReg;
-//            System.out.println( departureAirport + "\n: " + departureTimezone+"\n"+departureGate+"\n"+departureTerminal+"\n"+departureScheduled+"\n"+arrivalTimezone+"\n"+arrivalGate+"\n"+
-//                    arrivalTerminal+"\n"+arrivalScheduled+"\n"+airLine+"\n"+airReg);
+//            System.out.println( departureAirport + "\n: " + departureTimezone+"\n"+departureGate+"\n"+departureTermianl+"\n"+departureScheduled+"\n"+arrivalTimezone+"\n"+arrivalGate+"\n"+
+//                    arrivalTermianl+"\n"+arrivalScheduled+"\n"+airLine+"\n"+airReg);
 //        }
 //    }
 }

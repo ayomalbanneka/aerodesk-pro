@@ -5,6 +5,7 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String email;
+    private String password;
     private String joinDate;
     private String gender;
     private String status;
@@ -32,6 +33,14 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getJoinDate() {
