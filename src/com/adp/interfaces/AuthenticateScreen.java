@@ -172,7 +172,7 @@ public class AuthenticateScreen extends javax.swing.JFrame {
             }
 
         } catch (SQLException ex) {
-
+            
         }
 
 
