@@ -1,5 +1,6 @@
 package com.adp;
 
+import com.adp.util.AppIcon;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Image;
@@ -13,6 +14,7 @@ public class AuthenticateScreen extends javax.swing.JFrame {
     }
 
     private void init() {
+        AppIcon.applyIcon(this);
         // Logo load
         ImageIcon logoIcon = new ImageIcon(getClass().getClassLoader().getResource("com/adp/recources/images/Main-Logo.png"));
         Image image1 = logoIcon.getImage().getScaledInstance(LogoLabel.getWidth(), LogoLabel.getHeight(), Image.SCALE_SMOOTH);
@@ -60,6 +62,11 @@ public class AuthenticateScreen extends javax.swing.JFrame {
         emailField.setForeground(new java.awt.Color(83, 83, 83));
         emailField.setText("Email Address");
         emailField.setMargin(new java.awt.Insets(2, 20, 2, 6));
+        emailField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailFieldActionPerformed(evt);
+            }
+        });
 
         authBtn.setBackground(new java.awt.Color(0, 0, 0));
         authBtn.setFont(new java.awt.Font("Inter 18pt Medium", 0, 14)); // NOI18N
@@ -72,7 +79,6 @@ public class AuthenticateScreen extends javax.swing.JFrame {
 
         passwordField.setBackground(new java.awt.Color(234, 234, 234));
         passwordField.setFont(new java.awt.Font("Inter 18pt Medium", 0, 14)); // NOI18N
-        passwordField.setText("jPasswordField1");
         passwordField.setMargin(new java.awt.Insets(2, 20, 2, 6));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -129,6 +135,10 @@ public class AuthenticateScreen extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailFieldActionPerformed
 
     public static void main(String args[]) {
         FlatLightLaf.setup();

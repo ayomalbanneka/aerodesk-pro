@@ -1,5 +1,6 @@
 package com.adp.interfaces;
 
+import com.adp.util.AppIcon;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.Image;
@@ -17,7 +18,7 @@ public class SplashScreen extends javax.swing.JFrame {
     }
 
     private void init() {
-        
+        AppIcon.applyIcon(this);
         setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 40, 40));
 
         ImageIcon icon1 = new ImageIcon(getClass().getClassLoader().getResource("com/adp/recources/images/Main-Logo.png"));
