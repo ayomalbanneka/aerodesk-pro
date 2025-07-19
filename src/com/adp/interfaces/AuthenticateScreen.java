@@ -2,14 +2,19 @@ package com.adp.interfaces;
 
 import com.adp.connection.RDSConnection;
 import com.adp.loggers.CustomLoggers;
+import com.adp.model.Employee;
+import com.adp.util.AppSession;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
+
 import java.awt.Image;
-import javax.swing.ImageIcon;
+import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
+
 import raven.toast.Notifications;
 
 public class AuthenticateScreen extends javax.swing.JFrame {
@@ -91,52 +96,52 @@ public class AuthenticateScreen extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(LogoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(emailField, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
-                            .addComponent(authBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordField))))
-                .addContainerGap(25, Short.MAX_VALUE))
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(144, 144, 144)
+                                                .addComponent(jLabel3))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(25, 25, 25)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(LogoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                                        .addComponent(emailField, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+                                                        .addComponent(authBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(passwordField))))
+                                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(LogoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(authBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(17, 17, 17))
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(LogoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)
+                                .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(authBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                                .addComponent(jLabel3)
+                                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -147,49 +152,76 @@ public class AuthenticateScreen extends javax.swing.JFrame {
         String email = emailField.getText().trim();
         String password = String.valueOf(passwordField.getText());
 
-        try {
-            String sql = "SELECT * FROM employee WHERE email = '" + email + "' AND password = '" + password + "'";
-            ResultSet rs = RDSConnection.executeQuery(sql);
+        String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9+_-]+(\\.[A-Za-z0-9+_-]+)*@"
+                + "[^-][A-Za-z0-9+-]+(\\.[A-Za-z0-9+-]+)*(\\.[A-Za-z]{2,})$";
 
-            if (rs.next()) {
-                if (rs.getInt("employee_status_id") == 1) {
-//                    Notifications.getInstance().show(
-//                            Notifications.Type.SUCCESS,
-//                            Notifications.Location.TOP_CENTER,
-//                            3000,
-//                            "Login Success");
+        if (email.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Email is a required field. Please fill it in.", "Email Required", JOptionPane.WARNING_MESSAGE);
+        } else if (!Pattern.matches(regexPattern, email)) {
+            JOptionPane.showMessageDialog(this, "The email address you entered is not valid. Please check and try again.", "Invalid Email Format", JOptionPane.WARNING_MESSAGE);
+        } else if (password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Password is a required field. Please fill it in.", "Password Required", JOptionPane.WARNING_MESSAGE);
+        }
 
-                   
+        String query = "SELECT * FROM employee " +
+                "INNER JOIN `employee_status` ON `employee_status`.`id` = `employee`.`employee_status_id`" +
+                "INNER JOIN `gender` ON `gender`.`id` = `employee`.`gender_id`" +
+                "INNER JOIN `employee_role` ON `employee_role`.`id` = `employee`.`user_role_id`" +
+                "WHERE email = ? AND password = ?";
 
-                    new OTPVerificationScreen(rs.getString("email")).setVisible(true);
+        try (ResultSet resultSet = RDSConnection.executeQuery(query, email, password)) {
+
+            if (resultSet.next()) {
+
+                String status = resultSet.getString("status");
+
+                if (status.equals("Active")) {
+
+                    Employee employee = new Employee();
+                    employee.setFirstName(resultSet.getString("first_name"));
+                    employee.setLastName(resultSet.getString("last_name"));
+                    employee.setEmail(resultSet.getString("email"));
+                    employee.setGender(resultSet.getString("gender"));
+                    employee.setStatus(resultSet.getString("status"));
+                    employee.setRole(resultSet.getString("role"));
+
+                    AppSession.setCurrentEmployee(employee);
+
+                    Notifications.getInstance().show(
+                            Notifications.Type.SUCCESS,
+                            Notifications.Location.TOP_CENTER,
+                            3000,
+                            "Login Success.");
+
+                    new OTPVerificationScreen(resultSet.getString("email")).setVisible(true);
                     AuthenticateScreen.this.dispose();
 
-//                    CustomLoggers.logger.info("Logged Successfully");
-                } else if (rs.getInt("employee_status_id") == 3) {
+                    CustomLoggers.logger.info("Logged Successfully.");
+                } else if (status.equals("Suspended")) {
 
                     Notifications.getInstance().show(
                             Notifications.Type.WARNING,
                             Notifications.Location.TOP_CENTER,
                             3000,
-                            "Acount is Suspended");
+                            "Account is Suspended.");
 
-                    CustomLoggers.logger.info("Account is suspended");
+                    CustomLoggers.logger.info("Account is suspended.");
 
-                } else if (rs.getInt("employee_status_id") == 4) {
+                } else if (status.equals("Terminated")) {
                     Notifications.getInstance().show(
                             Notifications.Type.ERROR,
                             Notifications.Location.TOP_CENTER,
                             3000,
-                            "Your Account has been terminated");
+                            "Your Account has been terminated.");
 
-                    CustomLoggers.logger.info("Account has been terminated");
+                    CustomLoggers.logger.info("Account has been terminated.");
                 }
             }
 
         } catch (SQLException ex) {
             CustomLoggers.logger.info(ex.toString());
+            ex.printStackTrace();
         }
-
 
     }//GEN-LAST:event_authBtnActionPerformed
 
