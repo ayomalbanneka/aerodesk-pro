@@ -42,6 +42,7 @@ public class RDSConnection {
         }
     }
 
+    //Update Query
     public static int executeUpdate(String query, Object... params) throws SQLException {
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -51,6 +52,7 @@ public class RDSConnection {
         }
     }
 
+    //INSERT, SELECT, DELETE Query
     public static ResultSet executeQuery(String query, Object... params) throws SQLException {
         Connection connection = getConnection();
         PreparedStatement statement = connection.prepareStatement(query);
