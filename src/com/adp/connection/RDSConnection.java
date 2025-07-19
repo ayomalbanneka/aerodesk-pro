@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class RDSConnection {
     
-     private static final String DATABSE = "airport-system.c7ioqcigsjos.eu-north-1.rds.amazonaws.com ";
+     private static final String DATABSE = "aeropro_db";
     private static final String USERNAME = "admin";
     private static final String PASSWORD = "AirPort#123";
     private static Connection connection;
@@ -20,9 +20,12 @@ public class RDSConnection {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 connection = DriverManager.getConnection(
-                        "jdbc:mysql://localhost:3306/" + DATABSE,
+                        "jdbc:mysql://airport-system.c7ioqcigsjos.eu-north-1.rds.amazonaws.com:3306/" + DATABSE,
                         USERNAME,
                         PASSWORD);
+                
+                System.out.println("connected");
+                
             } catch (ClassNotFoundException|SQLException e) {
                 e.printStackTrace();
             }
@@ -41,6 +44,10 @@ public class RDSConnection {
             return null;
         }
 
+    }
+    
+    public static void main(String[] args) {
+        getConnection();
     }
     
 }
