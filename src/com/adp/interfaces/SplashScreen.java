@@ -213,7 +213,7 @@ public class SplashScreen extends javax.swing.JFrame {
     public static void main(String args[]) {
         FlatMacLightLaf.setup();
         java.awt.EventQueue.invokeLater(() -> {
-        SplashScreen.SplashScreen = new SplashScreen(); // <-- FIX
+        SplashScreen.SplashScreen = new SplashScreen();
         SplashScreen.SplashScreen.setVisible(true);
     });
     }
