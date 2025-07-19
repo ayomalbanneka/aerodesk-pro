@@ -5,9 +5,8 @@
 package com.adp.util;
 
 /**
- *
  * @author Ayoma
  */
 public class AppIcon {
-    
+
 }
