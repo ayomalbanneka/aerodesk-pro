@@ -8,6 +8,6 @@ package com.adp.constant;
  *
  * @author Ayoma
  */
-public class colors {
+public class Colors {
     
 }
