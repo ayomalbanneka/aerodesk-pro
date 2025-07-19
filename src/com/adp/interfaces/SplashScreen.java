@@ -1,6 +1,6 @@
 package com.adp.interfaces;
 
-import com.adp.AuthenticateScreen;
+import com.adp.interfaces.AuthenticateScreen;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.Image;
