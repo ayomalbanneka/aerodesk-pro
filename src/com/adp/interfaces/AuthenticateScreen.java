@@ -1,9 +1,15 @@
 package com.adp.interfaces;
 
+import com.adp.connection.RDSConnection;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import raven.toast.Notifications;
 
 public class AuthenticateScreen extends javax.swing.JFrame {
 
@@ -64,6 +70,11 @@ public class AuthenticateScreen extends javax.swing.JFrame {
         authBtn.setFont(new java.awt.Font("Inter 18pt Medium", 0, 14)); // NOI18N
         authBtn.setForeground(new java.awt.Color(255, 255, 255));
         authBtn.setText("Authenticate");
+        authBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                authBtnActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Inter 18pt", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(124, 124, 124));
@@ -128,6 +139,44 @@ public class AuthenticateScreen extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void authBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authBtnActionPerformed
+        String email = emailField.getText().trim();
+        String password = String.valueOf(passwordField.getText());
+
+        try {
+            String sql = "SELECT * FROM employee WHERE email = '" + email + "' AND password = '" + password + "'";
+            ResultSet rs = RDSConnection.executeQuery(sql);
+
+            if (rs.next()) {
+                if (rs.getInt("employee_status_id") == 1) {
+                    Notifications.getInstance().show(
+                            Notifications.Type.SUCCESS,
+                            Notifications.Location.TOP_CENTER,
+                            3000,
+                            "Login Success");
+                } else if (rs.getInt("employee_status_id") == 3) {
+
+                    Notifications.getInstance().show(
+                            Notifications.Type.WARNING,
+                            Notifications.Location.TOP_CENTER,
+                            3000,
+                            "Acount is Suspended");
+                } else if (rs.getInt("employee_status_id") == 4) {
+                    Notifications.getInstance().show(
+                            Notifications.Type.ERROR,
+                            Notifications.Location.TOP_CENTER,
+                            3000,
+                            "Your Account has been suspended");
+                }
+            }
+
+        } catch (SQLException ex) {
+
+        }
+
+
+    }//GEN-LAST:event_authBtnActionPerformed
 
     public static void main(String args[]) {
         FlatLightLaf.setup();
