@@ -1,6 +1,7 @@
 package com.adp.interfaces;
 
 import com.adp.interfaces.panels.DashboardPanel;
+import com.adp.util.AppIcon;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
@@ -44,6 +45,7 @@ public class MainScreen extends javax.swing.JFrame {
     }
 
     private void init() {
+        AppIcon.applyIcon(this);
         ImageIcon icon1 = new ImageIcon(getClass().getClassLoader().getResource("com/adp/recources/images/Dark-Main-Logo.png"));
         Image image1 = icon1.getImage().getScaledInstance(logoLabel.getWidth(), logoLabel.getHeight(), Image.SCALE_SMOOTH);
         logoLabel.setIcon(new ImageIcon(image1));
