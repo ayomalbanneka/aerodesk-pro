@@ -60,12 +60,10 @@ public class OTPVerificationScreen extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(120, 119, 119));
         jLabel13.setText("<html>A 9-digit verification code has been sent to your email. Enter it below to access the AeroDesk Flight System admin panel securely.</html>");
 
-        codeField.setBackground(new java.awt.Color(234, 234, 234));
         codeField.setFont(new java.awt.Font("Inter 18pt Medium", 0, 30)); // NOI18N
         codeField.setForeground(new java.awt.Color(83, 83, 83));
         codeField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         codeField.setText("000-000-000");
-        codeField.setBorder(null);
         codeField.setMargin(new java.awt.Insets(2, 20, 2, 6));
 
         verifyBtn.setBackground(new java.awt.Color(0, 0, 0));
