@@ -4,18 +4,19 @@ import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
 
 public class StaffManageDialog extends javax.swing.JDialog {
-    
-    public StaffManageDialog(java.awt.Frame parent, boolean modal) {
+
+    public StaffManageDialog(java.awt.Frame parent, boolean modal, String id) {
         super(parent, modal);
         initComponents();
         init();
+        System.out.println(id);
     }
-    
+
     private void init() {
         infoPanel.putClientProperty(FlatClientProperties.STYLE, "arc:30");
         changeBtn.putClientProperty(FlatClientProperties.STYLE, "arc:20");
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -263,24 +264,7 @@ public class StaffManageDialog extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         new FlightShowPanel(null, true).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-    
-    public static void main(String args[]) {
-        
-        FlatLightLaf.setup();
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                StaffManageDialog dialog = new StaffManageDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton changeBtn;

@@ -1,5 +1,7 @@
 package com.adp.interfaces;
 
+import com.adp.interfaces.operatorSide.panel.BaggageHandlingPanel;
+import com.adp.interfaces.operatorSide.panel.OperatorDashboardPanel;
 import com.adp.interfaces.panels.DashboardPanel;
 import com.adp.util.AppIcon;
 import com.formdev.flatlaf.FlatClientProperties;
@@ -18,7 +20,9 @@ import javax.swing.UIManager;
 public class MainScreen extends javax.swing.JFrame {
 
     private CardLayout cardLayout;
-    private DashboardPanel dashboard;
+    //private DashboardPanel dashboard;
+//    private OperatorDashboardPanel operatorPanel;
+    private BaggageHandlingPanel baggageHandling;
 
     public MainScreen() {
         initComponents();
@@ -34,11 +38,15 @@ public class MainScreen extends javax.swing.JFrame {
             this.cardLayout = (CardLayout) CardPanel.getLayout();
         }
 
-        this.dashboard = new DashboardPanel();
+        //this.dashboard = new DashboardPanel();
+//        this.operatorPanel = new OperatorDashboardPanel();
+        this.baggageHandling = new BaggageHandlingPanel();
 
-        dashboard.putClientProperty(FlatClientProperties.STYLE, "arc:50");
+        //dashboard.putClientProperty(FlatClientProperties.STYLE, "arc:50");
+        baggageHandling.putClientProperty(FlatClientProperties.STYLE, "arc:50");
 
-        this.CardPanel.add(dashboard, "dashboard");
+        //this.CardPanel.add(dashboard, "dashboard");
+        this.CardPanel.add(baggageHandling, "baggageHandling");
 
         SwingUtilities.updateComponentTreeUI(CardPanel);
 
@@ -69,6 +77,9 @@ public class MainScreen extends javax.swing.JFrame {
         dashboardBtn = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
         CardPanel = new javax.swing.JPanel();
+        dashboardBtn1 = new javax.swing.JButton();
+        dashboardBtn2 = new javax.swing.JButton();
+        dashboardBtn3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -114,16 +125,64 @@ public class MainScreen extends javax.swing.JFrame {
                 .addGap(10, 10, 10))
         );
 
+        dashboardBtn1.setBackground(new java.awt.Color(21, 21, 21));
+        dashboardBtn1.setFont(new java.awt.Font("Inter 18pt Medium", 0, 14)); // NOI18N
+        dashboardBtn1.setForeground(new java.awt.Color(255, 255, 255));
+        dashboardBtn1.setText("Baggage Handling");
+        dashboardBtn1.setBorder(null);
+        dashboardBtn1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        dashboardBtn1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        dashboardBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dashboardBtn1ActionPerformed(evt);
+            }
+        });
+
+        dashboardBtn2.setBackground(new java.awt.Color(21, 21, 21));
+        dashboardBtn2.setFont(new java.awt.Font("Inter 18pt Medium", 0, 14)); // NOI18N
+        dashboardBtn2.setForeground(new java.awt.Color(255, 255, 255));
+        dashboardBtn2.setText("Passanger Check");
+        dashboardBtn2.setBorder(null);
+        dashboardBtn2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        dashboardBtn2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        dashboardBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dashboardBtn2ActionPerformed(evt);
+            }
+        });
+
+        dashboardBtn3.setBackground(new java.awt.Color(21, 21, 21));
+        dashboardBtn3.setFont(new java.awt.Font("Inter 18pt Medium", 0, 14)); // NOI18N
+        dashboardBtn3.setForeground(new java.awt.Color(255, 255, 255));
+        dashboardBtn3.setText("Passanger Support");
+        dashboardBtn3.setBorder(null);
+        dashboardBtn3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        dashboardBtn3.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        dashboardBtn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dashboardBtn3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dashboardBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dashboardBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dashboardBtn1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dashboardBtn3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dashboardBtn2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)))
                 .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
         );
@@ -135,7 +194,14 @@ public class MainScreen extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
-                        .addComponent(dashboardBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(dashboardBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(dashboardBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(dashboardBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(dashboardBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -161,8 +227,21 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void dashboardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardBtnActionPerformed
-        cardLayout.show(mainPanel, "dashboard");
+//        cardLayout.show(mainPanel, "dashboard");
+        cardLayout.show(mainPanel, "baggageHandling");
     }//GEN-LAST:event_dashboardBtnActionPerformed
+
+    private void dashboardBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dashboardBtn1ActionPerformed
+
+    private void dashboardBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardBtn2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dashboardBtn2ActionPerformed
+
+    private void dashboardBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardBtn3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dashboardBtn3ActionPerformed
 
     public static void main(String args[]) {
         FlatLightLaf.setup();
@@ -172,6 +251,9 @@ public class MainScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CardPanel;
     private javax.swing.JButton dashboardBtn;
+    private javax.swing.JButton dashboardBtn1;
+    private javax.swing.JButton dashboardBtn2;
+    private javax.swing.JButton dashboardBtn3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logoLabel;
     private javax.swing.JPanel mainPanel;
