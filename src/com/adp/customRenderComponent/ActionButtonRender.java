@@ -1,6 +1,7 @@
 package com.adp.customRenderComponent;
 
 import com.adp.constant.Colors;
+import com.adp.interfaces.dialog.StaffManageDialog;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.Color;
 import java.awt.Component;
@@ -43,6 +44,12 @@ public class ActionButtonRender {
 
                     System.out.println("Hello world");
                     System.out.println(actionTable.getSelectedRow());
+
+                    switch (modelType) {
+                        case "crewModel":
+                            String id = actionTable.getValueAt(actionTable.getSelectedRow(), 0).toString();
+                            new StaffManageDialog(parentFrame, true, id).setVisible(true);
+                    }
 
                     fireEditingStopped();
                 });
