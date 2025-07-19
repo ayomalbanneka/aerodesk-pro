@@ -1,22 +1,37 @@
 package com.adp.interfaces;
 
+import com.adp.mail.OtpSending;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Image;
 import java.awt.Insets;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
+import java.sql.ResultSet;
 
 public class OTPVerificationScreen extends javax.swing.JFrame {
+    
+    private String generatedOtp;
 
-    public OTPVerificationScreen() {
+    public OTPVerificationScreen(String email) {
         initComponents();
         init();
         UIManager.put("Component.arc", 10);
         UIManager.put("ComboBox.padding", new Insets(5, 10, 5, 10));
+        dynamicDataLoading(email);  
+        
+         // Call the OtpSending utility
+        generatedOtp = OtpSending.sendOtp(email);
+        
+    }
+
+    private void dynamicDataLoading(String email) {
+            String e = "Email send to : " + email;
+            jLabel10.setText(e);
     }
 
     private void init() {
+
         // Logo load
         ImageIcon logoIcon = new ImageIcon(getClass().getClassLoader().getResource("com/adp/recources/images/Main-Logo.png"));
         Image image1 = logoIcon.getImage().getScaledInstance(LogoLabel.getWidth(), LogoLabel.getHeight(), Image.SCALE_SMOOTH);
@@ -24,6 +39,9 @@ public class OTPVerificationScreen extends javax.swing.JFrame {
 
         // Rounded corners config
         verifyBtn.putClientProperty(FlatClientProperties.STYLE, "arc:10");
+        
+        
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -132,10 +150,6 @@ public class OTPVerificationScreen extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public static void main(String args[]) {
-        FlatLightLaf.setup();
-        java.awt.EventQueue.invokeLater(() -> new OTPVerificationScreen().setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LogoLabel;
