@@ -1,15 +1,12 @@
 package com.adp.interfaces;
 
 import com.formdev.flatlaf.FlatClientProperties;
-//import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.Timer;
 
 public class SplashScreen extends javax.swing.JFrame {
 
@@ -20,24 +17,20 @@ public class SplashScreen extends javax.swing.JFrame {
     }
 
     private void init() {
-
+        
         setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 40, 40));
 
         ImageIcon icon1 = new ImageIcon(getClass().getClassLoader().getResource("com/adp/recources/images/Main-Logo.png"));
         Image image1 = icon1.getImage().getScaledInstance(LogoLabel.getWidth(), LogoLabel.getHeight(), Image.SCALE_SMOOTH);
         LogoLabel.setIcon(new ImageIcon(image1));
-
         imagePanel.putClientProperty(FlatClientProperties.STYLE, "arc:40");
 
-        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("com/adp/recources/images/Flight.png"));
-        Image image = icon.getImage().getScaledInstance(ImageLabel.getWidth(), 280, Image.SCALE_SMOOTH);
+        ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("com/adp/recources/images/Flight-Image.png"));
+        Image image = icon.getImage().getScaledInstance(ImageLabel.getWidth(), ImageLabel.getHeight(), Image.SCALE_SMOOTH);
         ImageLabel.setIcon(new ImageIcon(image));
 
-        new Timer(2000 , (ActionEvent e) -> {
-            SplashScreen.this.dispose();
-        });
-        
     }
+
     
     private void loadingAnimation(){
         Thread t = new Thread(new Runnable() {
@@ -161,7 +154,7 @@ public class SplashScreen extends javax.swing.JFrame {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(loadCountShowLabel))
                                         .addComponent(loader, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(LogoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(LogoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(51, 51, 51))
                     .addGroup(backgroundLayout.createSequentialGroup()

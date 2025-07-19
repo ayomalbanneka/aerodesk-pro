@@ -62,7 +62,7 @@
                                           </Group>
                                           <Component id="loader" min="-2" pref="354" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="LogoLabel" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
+                                      <Component id="LogoLabel" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
