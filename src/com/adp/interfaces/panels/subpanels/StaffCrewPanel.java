@@ -1,17 +1,56 @@
 package com.adp.interfaces.panels.subpanels;
 
+import com.adp.constant.Colors;
+import com.adp.customRenderComponent.ActionButtonRender;
 import com.formdev.flatlaf.FlatClientProperties;
+import com.formdev.flatlaf.extras.FlatSVGIcon;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Frame;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
 
 public class StaffCrewPanel extends javax.swing.JPanel {
 
     public StaffCrewPanel() {
         initComponents();
+        initTable();
         init();
     }
 
     private void init() {
         availableCrewPanel.putClientProperty(FlatClientProperties.STYLE, "arc:20");
         suspendPanel.putClientProperty(FlatClientProperties.STYLE, "arc:20");
+    }
+
+    private void initTable() {
+
+        Frame parent = (Frame) SwingUtilities.getWindowAncestor(StaffCrewPanel.this);
+        TableColumn actionColumn = flightOperationOverviewTable.getColumn("Action");
+        ActionButtonRender actionBtn = new ActionButtonRender();
+
+        actionBtn.actionButton(actionColumn, flightOperationOverviewTable, "crewModel", parent);
+
+        reloadBtn.setIcon(new FlatSVGIcon("com/adp/recources/icons/Reload.svg", 25, 25));
+        reloadBtn.putClientProperty(FlatClientProperties.STYLE, "arc:100");
+
+        JTableHeader header = flightOperationOverviewTable.getTableHeader();
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setPreferredSize(new Dimension(header.getWidth(), 50));
+        renderer.setForeground(Color.BLACK);
+        renderer.setBackground(Colors.PRIMARAY);
+        header.setDefaultRenderer(renderer);
+        header.setBorder(new MatteBorder(0, 0, 1, 0, Colors.BORDER));
+
+        header.setFont(new Font("Inter 18pt Medium", Font.PLAIN, 16));
+
+        DefaultTableCellRenderer leftRenderer = (DefaultTableCellRenderer) header.getDefaultRenderer();
+        leftRenderer.setHorizontalAlignment(SwingConstants.LEFT);
     }
 
     @SuppressWarnings("unchecked")
@@ -27,6 +66,12 @@ public class StaffCrewPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        flightOperationOverviewPanel = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        reloadBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        flightOperationOverviewTable = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -117,13 +162,74 @@ public class StaffCrewPanel extends javax.swing.JPanel {
 
         jPanel1.add(suspendPanel);
 
+        flightOperationOverviewPanel.setBackground(new java.awt.Color(244, 244, 244));
+
+        jLabel8.setFont(new java.awt.Font("Inter 18pt", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(123, 123, 123));
+        jLabel8.setText("View and manage pilot and cabin crew assignments for scheduled flights.");
+
+        jLabel9.setFont(new java.awt.Font("Inter 18pt Medium", 0, 16)); // NOI18N
+        jLabel9.setText("Flight Crew Management");
+
+        reloadBtn.setFocusPainted(false);
+
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(244, 244, 244)));
+
+        flightOperationOverviewTable.setBackground(new java.awt.Color(244, 244, 244));
+        flightOperationOverviewTable.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(244, 244, 244)));
+        flightOperationOverviewTable.setFont(new java.awt.Font("Inter 18pt Medium", 0, 14)); // NOI18N
+        flightOperationOverviewTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"#CID_1", "Chamod Dilshan", "Male", "Sinhala", "English", "Null", "Active", "", ""}
+            },
+            new String [] {
+                "Crew ID", "Crew Name", "Gender", "Nationality", "Languages", "Job Tittle", "Status", "Flight Assign", "Action"
+            }
+        ));
+        flightOperationOverviewTable.setRowHeight(50);
+        flightOperationOverviewTable.setRowSelectionAllowed(false);
+        jScrollPane1.setViewportView(flightOperationOverviewTable);
+
+        javax.swing.GroupLayout flightOperationOverviewPanelLayout = new javax.swing.GroupLayout(flightOperationOverviewPanel);
+        flightOperationOverviewPanel.setLayout(flightOperationOverviewPanelLayout);
+        flightOperationOverviewPanelLayout.setHorizontalGroup(
+            flightOperationOverviewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, flightOperationOverviewPanelLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(flightOperationOverviewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(flightOperationOverviewPanelLayout.createSequentialGroup()
+                        .addGroup(flightOperationOverviewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(reloadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19))
+        );
+        flightOperationOverviewPanelLayout.setVerticalGroup(
+            flightOperationOverviewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(flightOperationOverviewPanelLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(flightOperationOverviewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(reloadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(flightOperationOverviewPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1293, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1293, Short.MAX_VALUE)
+                    .addComponent(flightOperationOverviewPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -131,20 +237,28 @@ public class StaffCrewPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(658, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(flightOperationOverviewPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel availableCrewPanel;
+    private javax.swing.JPanel flightOperationOverviewPanel;
+    private javax.swing.JTable flightOperationOverviewTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton reloadBtn;
     private javax.swing.JPanel suspendPanel;
     // End of variables declaration//GEN-END:variables
 }
