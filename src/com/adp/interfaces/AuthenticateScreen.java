@@ -1,6 +1,7 @@
 package com.adp.interfaces;
 
 import com.adp.connection.RDSConnection;
+import com.adp.loggers.CustomLoggers;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Image;
@@ -12,6 +13,8 @@ import java.util.logging.Logger;
 import raven.toast.Notifications;
 
 public class AuthenticateScreen extends javax.swing.JFrame {
+
+    private static AuthenticateScreen authenticateScreen;
 
     public AuthenticateScreen() {
         initComponents();
@@ -150,11 +153,18 @@ public class AuthenticateScreen extends javax.swing.JFrame {
 
             if (rs.next()) {
                 if (rs.getInt("employee_status_id") == 1) {
-                    Notifications.getInstance().show(
-                            Notifications.Type.SUCCESS,
-                            Notifications.Location.TOP_CENTER,
-                            3000,
-                            "Login Success");
+//                    Notifications.getInstance().show(
+//                            Notifications.Type.SUCCESS,
+//                            Notifications.Location.TOP_CENTER,
+//                            3000,
+//                            "Login Success");
+
+                   
+
+                    new OTPVerificationScreen(rs.getString("email")).setVisible(true);
+                    AuthenticateScreen.this.dispose();
+
+//                    CustomLoggers.logger.info("Logged Successfully");
                 } else if (rs.getInt("employee_status_id") == 3) {
 
                     Notifications.getInstance().show(
@@ -162,17 +172,22 @@ public class AuthenticateScreen extends javax.swing.JFrame {
                             Notifications.Location.TOP_CENTER,
                             3000,
                             "Acount is Suspended");
+
+                    CustomLoggers.logger.info("Account is suspended");
+
                 } else if (rs.getInt("employee_status_id") == 4) {
                     Notifications.getInstance().show(
                             Notifications.Type.ERROR,
                             Notifications.Location.TOP_CENTER,
                             3000,
-                            "Your Account has been suspended");
+                            "Your Account has been terminated");
+
+                    CustomLoggers.logger.info("Account has been terminated");
                 }
             }
 
         } catch (SQLException ex) {
-            
+            CustomLoggers.logger.info(ex.toString());
         }
 
 
@@ -180,7 +195,10 @@ public class AuthenticateScreen extends javax.swing.JFrame {
 
     public static void main(String args[]) {
         FlatLightLaf.setup();
-        java.awt.EventQueue.invokeLater(() -> new AuthenticateScreen().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> {
+            AuthenticateScreen.authenticateScreen = new AuthenticateScreen();
+            AuthenticateScreen.authenticateScreen.setVisible(true);
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
