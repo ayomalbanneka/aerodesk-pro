@@ -1,6 +1,7 @@
 package com.adp.interfaces.panels;
 
 import com.adp.interfaces.panels.subpanels.OptionPanel;
+import com.adp.interfaces.panels.subpanels.StaffCrewPanel;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.CardLayout;
@@ -11,6 +12,7 @@ public class DashboardPanel extends javax.swing.JPanel {
 
     private CardLayout cardLayout;
     private OptionPanel optionPanel;
+    private StaffCrewPanel staffCrewPanel;
 
     public DashboardPanel() {
         initComponents();
@@ -24,8 +26,10 @@ public class DashboardPanel extends javax.swing.JPanel {
         }
 
         this.optionPanel = new OptionPanel();
+        this.staffCrewPanel = new StaffCrewPanel();
 
         this.secondCardPanel.add(optionPanel, "optionPanel");
+        this.secondCardPanel.add(staffCrewPanel, "staffCrewPanel");
 
         SwingUtilities.updateComponentTreeUI(secondCardPanel);
     }
@@ -94,6 +98,11 @@ public class DashboardPanel extends javax.swing.JPanel {
         stafCrewBtn.setFont(new java.awt.Font("Inter 18pt Medium", 0, 14)); // NOI18N
         stafCrewBtn.setForeground(new java.awt.Color(97, 97, 97));
         stafCrewBtn.setText("Staff Crew");
+        stafCrewBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stafCrewBtnActionPerformed(evt);
+            }
+        });
         jPanel2.add(stafCrewBtn);
 
         jLabel2.setFont(new java.awt.Font("Inter 24pt SemiBold", 0, 24)); // NOI18N
@@ -110,12 +119,12 @@ public class DashboardPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(secondCardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1020, Short.MAX_VALUE)
-                        .addComponent(flightAddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 999, Short.MAX_VALUE)
+                        .addComponent(flightAddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
@@ -136,6 +145,10 @@ public class DashboardPanel extends javax.swing.JPanel {
     private void operationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_operationBtnActionPerformed
         cardLayout.show(optionPanel, "optionPanel");
     }//GEN-LAST:event_operationBtnActionPerformed
+
+    private void stafCrewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stafCrewBtnActionPerformed
+        cardLayout.show(staffCrewPanel, "staffCrewPanel");
+    }//GEN-LAST:event_stafCrewBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
