@@ -24,8 +24,6 @@ public class RDSConnection {
                         USERNAME,
                         PASSWORD);
                 
-                System.out.println("connected");
-                
             } catch (ClassNotFoundException|SQLException e) {
                 e.printStackTrace();
             }
@@ -44,10 +42,6 @@ public class RDSConnection {
             return null;
         }
 
-    }
-    
-    public static void main(String[] args) {
-        getConnection();
     }
     
 }
