@@ -13,7 +13,7 @@ public class OtpSending {
 
     public static String sendOtp(String toEmail) {
         final String from = "ayomalkaushalya@gmail.com";
-        final String password = "spcsdaihpssxyojz"; // App-specific password
+        final String password = ""; // App-specific password
 
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
